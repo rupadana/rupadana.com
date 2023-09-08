@@ -93,9 +93,9 @@ const FRONTEND = [
 
 const BACKEND = [
   {
-    title: 'Javascript',
-    icon: 'JavaScript',
-    linkIndonesia: 'https://www.youtube.com/watch?v=NBZ9Ro6UKV8&list=PLFIM0718LjIVuONHysfOK0ZtiqUWvrx4F',
+    title: 'Laravel',
+    icon: 'Laravel',
+    linkIndonesia: 'https://youtu.be/HqAMb6kqlLs?si=pmX8ILOmOB_H9-Yu',
     linkEnglish: ''
   }
 ];
@@ -114,6 +114,6 @@ export const TRIBES = [
   {
     label: 'Backend Developer',
     path: '/roadmap?tribe=backend-developer',
-    isShow: false
+    isShow: true
   }
 ];

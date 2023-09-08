@@ -5,8 +5,7 @@ export default function Summary() {
     <div className="flex flex-col space-y-6 font-sans text-neutral-800 dark:text-neutral-300">
       <p>
       I'm a Developer since 2019 joining my company as a R&D Team, Work with Programming language PHP, Javascript and Dart.
-      Develop many things with Laravel. Currently learning automate system for CI/CD. 
-      Handle 1400+ Virtual Machines and Make Working From Home Comfortable for Client. Currently, reside in Bali, Indonesia 🇮🇩.
+      Develop many things with Laravel. Currently learning automate system for CI/CD. Currently, reside in Bali, Indonesia 🇮🇩.
       </p>
       <p>
         As a fast learner and adaptive thinker, I thrive in dynamic environments where innovation is the driving force.

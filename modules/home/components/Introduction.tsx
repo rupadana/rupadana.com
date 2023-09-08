@@ -24,7 +24,7 @@ export default function Introduction() {
           </li>
         </ul>
         <p className="leading-[1.8] md:leading-loose text-neutral-800 dark:text-neutral-300">
-        I'm a Developer since 2019 joining my company as a R&D Team, Work with Programming language PHP, Javascript and Dart. Develop many things with Laravel. Currently learning automate system for CI/CD. Handle 1400+ Virtual Machines and Make Working From Home Comfortable for Client
+        I'm a Developer since 2019 joining my company as a R&D Team, Work with Programming language PHP, Javascript and Dart. Develop many things with Laravel. Currently learning automate system for CI/CD.
         </p>
       </div>
     </section>

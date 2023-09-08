@@ -1,0 +1,88 @@
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require rupadana/filament-api-service
+```
+
+## Usage
+
+```bash
+php artisan make:filament-api-service BlogResource
+```
+
+Add this code to your routes file, example in routes/api.php
+
+```
+...
+use App\Filament\Resources\BlogResource\Api;
+...
+
+BlogApiService::routes();
+```
+
+and then you will got this routes:
+
+- [GET] '/api/blogs'   - Return LengthAwarePaginator 
+- [GET] '/api/blogs/1' - Return single resource   
+- [PUT] '/api/blogs/1' - Update resource
+- [DELETE] '/api/blogs/1' - Delete resource
+
+
+Im using `"spatie/laravel-query-builder": "^5.3"` to handle query and filtering. u can see `"spatie/laravel-query-builder": "^5.3"` [https://spatie.be/docs/laravel-query-builder/v5/introduction](documentation)
+
+
+You can specified `allowedFilters` and `allowedFields` in your model
+
+Example
+```
+class User extends Model {
+    public static array $allowedFilters = [
+        'name'
+    ];
+    
+    public static array $allowedFields = [
+        'name'
+    ];
+}
+```
+
+
+## Transform API Response
+
+```bash 
+php artisan make:filament-api-transformer Blog
+```
+
+it will be create BlogTransformer in `App\Filament\Resources\BlogResource\Api\Transformers`
+
+next step you need to edit & add it to your Resource
+
+```
+use App\Filament\Resources\BlogResource\Api\Transformers\BlogTransformer;
+
+class BlogResource extends Resource
+{
+    ...
+    public static function getApiTransformer() 
+    { 
+        return BlogTransformer::class; 
+    }
+    ...
+}
+```
+
+
+## Group Name & Prefix
+
+You can edit prefix & group route name as you want, default im use model singular label;
+
+```
+class BlogApiService extends ApiService
+{
+    ...
+    protected static string | null $groupRouteName = 'myblog';
+    ...
+}
+```

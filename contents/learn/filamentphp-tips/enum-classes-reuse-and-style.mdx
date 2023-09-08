@@ -1,0 +1,77 @@
+---
+id: 1
+title: 'Tips using enum in filamentphp'
+category: 'Filamentphp Tips'
+language: 'PHP'
+difficulty: 'Medium'
+source: ''
+cover_url: ''
+source_url: ''
+created_at: '2023-08-24'
+updated_at: '2023-08-24'
+---
+
+> Introduction
+
+Enum has been debut on PHP 8.1, for filamentphp user who write Select `label` or table `color` in filament resource, Use Enum!.
+
+> Problem
+
+How to use enum for support Filamentphp Form & Table?
+
+> Solution
+
+# Create an Enum in PHP
+
+```
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum Status: string implements HasLabel, HasColor
+{
+    case Pending = 'pending';
+    case Success = 'success';
+    case Failed = 'failed';
+
+    public function getLabel(): ?string {
+        return match($this) {
+            self::Pending => 'Pending',
+            self::Success => 'Success',
+            self::Failed => 'Failed'
+        };
+    }
+
+    public function getColor(): ?string {
+        return match($this) {
+            self::Pending => 'warning',
+            self::Success => 'success',
+            self::Failed => 'danger'
+        };
+    }
+}
+
+```
+
+# Modify laravel model
+
+Cast column status as enum `Status`
+
+```
+protected $casts = [
+    'status' => Status::class
+];
+```
+
+# Use for filamentphp Table
+
+```
+TextColumn::make('status')
+    ->badge()
+```
+
+# Use for filamentphp Field
+
+```
+Select::make('status')
+    ->options(Status::class)
+```
