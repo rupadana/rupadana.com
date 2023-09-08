@@ -12,5 +12,5 @@ export const METADATA = {
     locale: 'id-ID'
   },
   exTitle: '| Rupadana',
-  profile: 'https://res.cloudinary.com/dvlbwm8c1/image/upload/v1693008885/codebayu/ab0kfkhjgymzthooxiea.webp'
+  profile: 'https://res.cloudinary.com/rupadana/image/upload/v1694018808/rupadana/gy8iuaz8wutrarfpawpj.jpg'
 };
