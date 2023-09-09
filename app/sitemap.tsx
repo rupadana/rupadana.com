@@ -1,10 +1,9 @@
 import { MetadataRoute } from 'next'
 import { getLearnSeries } from './learn/page'
+import domain from '@/common/libs/domain';
 
 
-function domain(endpoint: string) {
-    return `${process.env.DOMAIN}${endpoint}`
-}
+
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 

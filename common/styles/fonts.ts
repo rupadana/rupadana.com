@@ -1,7 +1,7 @@
-import { Sora } from 'next/font/google';
+import { Sora, Poppins } from 'next/font/google';
 
-export const soraSans = Sora({
-  variable: '--soraSans-font',
+export const poppins = Poppins({
+  variable: '--poppins-font',
   subsets: ['latin'],
   display: 'fallback',
   weight: ['300', '400', '500', '600', '700', '800']

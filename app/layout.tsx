@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+export const revalidate = 3600 // revalidate at most every hour
 
 import GoogleAnalytics from '@bradgarropy/next-google-analytics';
 import { Analytics } from '@vercel/analytics/react';
@@ -7,7 +8,7 @@ import NextTopLoader from 'nextjs-toploader';
 import Layouts from '@/common/components/layouts/index';
 import { METADATA } from '@/common/constant/metadata';
 
-import { soraSans } from '../common/styles/fonts';
+import { poppins } from '../common/styles/fonts';
 import ThemeProviderContext from '../context/theme';
 import './globals.css';
 
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={soraSans.className}>
+      <body className={poppins.className}>
         <NextTopLoader
           color="#2299DD"
           initialPosition={0.08}
