@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProviderContext>
           <Layouts>{children}</Layouts>
         </ThemeProviderContext>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Analytics />
 
         <GoogleAnalytics measurementId={process.env.GTM_ID || ''} />
       </body>
