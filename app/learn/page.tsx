@@ -11,6 +11,7 @@ import LearnModule from '@/modules/learn';
 import { ContentProps } from '@/common/types/learn';
 import axios from 'axios';
 import { fetcher } from '@/services/fetcher';
+import getLearnSeries from './data';
 
 export const metadata: Metadata = {
   title: `Learn ${METADATA.exTitle}`,
@@ -30,9 +31,6 @@ export default async function LearnPage() {
 
   let series = await getLearnSeries();
 
-  
-  
-
   return (
     <>
       <Container data-aos="fade-up">
@@ -41,14 +39,4 @@ export default async function LearnPage() {
       </Container>
     </>
   );
-}
-
-
-export async function getLearnSeries(): Promise<ContentProps[]>
-{
-  const ENDPOINT = process.env.CMS_API_URL + '/learn-series/all' || '' as string;
-
-  const response = await fetcher(ENDPOINT)
-  if (response?.status !== 200) return {} as ContentProps[];
-  return response.data.data as ContentProps[]
 }

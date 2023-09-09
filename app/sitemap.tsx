@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
-import { getLearnSeries } from './learn/page'
+
 import domain from '@/common/libs/domain';
+import getLearnSeries from './learn/data';
 
 
 
