@@ -44,7 +44,7 @@ export default async function LearnPage() {
 }
 
 
-async function getLearnSeries(): Promise<ContentProps[]>
+export async function getLearnSeries(): Promise<ContentProps[]>
 {
   const ENDPOINT = process.env.CMS_API_URL + '/learn-series/all' || '' as string;
 
