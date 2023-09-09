@@ -10,6 +10,7 @@ import loadMdxFiles from '@/common/libs/mdx';
 
 import ContentDetail from '@/modules/learn/components/ContentDetail';
 import ContentDetailHeader from '@/modules/learn/components/ContentDetailHeader';
+import { fetcher } from '@/services/fetcher';
 
 interface Params {
   content: string;
@@ -25,9 +26,8 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const data = await getContentDetail(params);
-  const { frontMatter: meta } = data as any;
   return {
-    title: `${meta?.title} ${METADATA.exTitle}`,
+    title: `${data.title} ${METADATA.exTitle}`,
     openGraph: {
       url: METADATA.openGraph.url,
       siteName: METADATA.openGraph.siteName,
@@ -35,8 +35,8 @@ export async function generateMetadata(
       type: 'article',
       authors: METADATA.creator
     },
-    category: meta.category,
-    keywords: meta.title,
+    category: data.category,
+    keywords: data.title,
     alternates: {
       canonical: `${process.env.DOMAIN}/learn/${params.content}/${params.slug}`
     }
@@ -45,15 +45,15 @@ export async function generateMetadata(
 
 export default async function LearnContentDetailPage({ params }: LearnContentDetailPageProps) {
   const data = await getContentDetail(params);
-  const { content, frontMatter } = data as any;
+
   return (
     <>
       <Container data-aos="fade-up">
         <BackButton />
-        <ContentDetailHeader {...frontMatter} />
-        {content && (
+        <ContentDetailHeader {...data} />
+        {data && (
           <>
-            <ContentDetail content={content} />
+            <ContentDetail content={data.content} />
             <Breakline className="mt-14 mb-14" />
           </>
         )}
@@ -63,9 +63,11 @@ export default async function LearnContentDetailPage({ params }: LearnContentDet
 }
 
 async function getContentDetail(params: Params) {
-  const contentList = await loadMdxFiles(params.content);
-  const contentData = contentList.find(item => item.slug === params.slug);
-  if (!contentData) {
+  const ENDPOINT = `${process.env.CMS_API_URL}/learn-contents/${params.content}/${params.slug}`;
+
+  const response = await fetcher(ENDPOINT);
+  console.log(response.data.data)
+  if (response?.status !== 200) {
     return {
       redirect: {
         destination: '/404',
@@ -73,5 +75,5 @@ async function getContentDetail(params: Params) {
       }
     };
   }
-  return contentData;
+  return response.data.data;
 }

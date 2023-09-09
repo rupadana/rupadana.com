@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'standalone',
   images: {
-    domains: ['picsum.photos', 'res.cloudinary.com', 'admin.codecrafters.id','vitals.vercel-insights.com'],
+    domains: ['picsum.photos', 'res.cloudinary.com', 'admin.codecrafters.id', 'vitals.vercel-insights.com', 'admin.rupadana.com'],
 
   }
 };

@@ -1,3 +1,5 @@
+import { ImageType } from "./image";
+
 export interface ContentLanguage {
   id: string;
   title: string;
@@ -8,7 +10,7 @@ export interface ContentProps {
   title: string;
   slug: string;
   description: string;
-  image: string;
+  image: ImageType;
   is_new: boolean;
   level: 'beginner' | 'intermediate' | 'advanced' | 'all-levels';
   is_show: boolean;
@@ -26,6 +28,7 @@ export interface SubContentProps {
 export interface SubContentMetaProps {
   id: number;
   title: string;
+  slug: string;
   category: string;
   language?: string;
   difficulty?: string;

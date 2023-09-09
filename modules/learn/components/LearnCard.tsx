@@ -14,7 +14,7 @@ export default function LearnCard({ title, slug, description, image, is_new }: C
           </div>
         )}
         <Image
-          src={image}
+          src={image.url}
           width={400}
           height={200}
           alt={title}

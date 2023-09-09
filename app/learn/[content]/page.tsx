@@ -11,6 +11,7 @@ import { METADATA } from '@/common/constant/metadata';
 import loadMdxFiles from '@/common/libs/mdx';
 
 import ContentLists from '@/modules/learn/components/ContentLists';
+import { fetcher } from '@/services/fetcher';
 
 interface LearnContentPage {
   params: { content: string };
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
     title: `${content?.title} ${METADATA.exTitle}`,
     description: `${content?.description} on ${METADATA.openGraph.siteName}`,
     openGraph: {
-      images: content?.image,
+      images: content?.image.url,
       url: METADATA.openGraph.url,
       siteName: METADATA.openGraph.siteName,
       locale: METADATA.openGraph.locale,
@@ -46,8 +47,8 @@ export default async function LearnContentPage({ params }: LearnContentPage) {
   if (!content) return null;
 
   const sortedSubContents = subContents.sort((a, b) => {
-    const dateA = parseISO(a.frontMatter.created_at as string);
-    const dateB = parseISO(b.frontMatter.created_at as string);
+    const dateA = parseISO(a.created_at as string);
+    const dateB = parseISO(b.created_at as string);
     return compareDesc(dateB, dateA);
   });
 
@@ -65,9 +66,10 @@ export default async function LearnContentPage({ params }: LearnContentPage) {
 }
 
 async function getContent(contentSlug: string) {
-  const content = LEARN_CONTENTS.find(item => item?.slug === contentSlug) || null;
+  const ENDPOINT = `${process.env.CMS_API_URL}/learn-series/${contentSlug}/contents` ;
 
-  if (!content) {
+  const response = await fetcher(ENDPOINT)
+  if (response?.status !== 200) {
     return {
       redirect: {
         destination: '/404',
@@ -75,9 +77,9 @@ async function getContent(contentSlug: string) {
       }
     };
   }
-  const subContentList = loadMdxFiles(content?.slug);
+  
   return {
-    content,
-    subContents: subContentList
+    content: response.data.data.content,
+    subContents: response.data.data.subContents
   };
 }

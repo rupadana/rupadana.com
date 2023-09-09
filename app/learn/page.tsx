@@ -1,11 +1,16 @@
 import { Metadata } from 'next';
 
+import * as https from "https";
+
 import Container from '@/common/components/elements/Container';
 import PageHeading from '@/common/components/elements/PageHeading';
 import { LEARN_CONTENTS } from '@/common/constant/learn';
 import { METADATA } from '@/common/constant/metadata';
 
 import LearnModule from '@/modules/learn';
+import { ContentProps } from '@/common/types/learn';
+import axios from 'axios';
+import { fetcher } from '@/services/fetcher';
 
 export const metadata: Metadata = {
   title: `Learn ${METADATA.exTitle}`,
@@ -21,13 +26,29 @@ const PAGE_DESCRIPTION =
   "It's not a course, it's my personal learning notes. But if you are interested, let's learn together.";
 const filteredContents = LEARN_CONTENTS.filter(content => content.is_show) || [];
 
-export default function LearnPage() {
+export default async function LearnPage() {
+
+  let series = await getLearnSeries();
+
+  
+  
+
   return (
     <>
       <Container data-aos="fade-up">
         <PageHeading title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
-        <LearnModule contents={filteredContents} />
+        <LearnModule contents={series} />
       </Container>
     </>
   );
+}
+
+
+async function getLearnSeries(): Promise<ContentProps[]>
+{
+  const ENDPOINT = process.env.CMS_API_URL + '/learn-series/all' || '' as string;
+
+  const response = await fetcher(ENDPOINT)
+  if (response?.status !== 200) return {} as ContentProps[];
+  return response.data.data as ContentProps[]
 }

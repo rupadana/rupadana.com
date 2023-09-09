@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-import { ContentProps } from '@/common/types/learn';
+import { ContentProps, SubContentMetaProps } from '@/common/types/learn';
 import { MdxFileProps } from '@/common/types/mdx';
 
 import LearnSubContentItem from './LearnSubContentItem';
 
 interface ContentListsProps {
-  sortedSubContents: MdxFileProps[];
+  sortedSubContents: SubContentMetaProps[];
   title: string;
   content: ContentProps;
 }
@@ -27,9 +27,9 @@ export default function ContentLists({ sortedSubContents, title, content }: Cont
             parent={title}
             contentSlug={content?.slug}
             subContentSlug={item?.slug}
-            title={item?.frontMatter?.title as string}
-            language={item?.frontMatter?.language as string}
-            difficulty={item?.frontMatter?.difficulty as string}
+            title={item?.title as string}
+            language={item?.language as string}
+            difficulty={item?.difficulty as string}
           />
         </motion.div>
       ))}
