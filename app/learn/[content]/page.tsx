@@ -12,6 +12,7 @@ import loadMdxFiles from '@/common/libs/mdx';
 
 import ContentLists from '@/modules/learn/components/ContentLists';
 import { fetcher } from '@/services/fetcher';
+import { ContentProps, SubContentMetaProps } from '@/common/types/learn';
 
 interface LearnContentPage {
   params: { content: string };
@@ -42,8 +43,13 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
   };
 }
 
+interface ContentDetailProps {
+  content: ContentProps;
+  subContents: SubContentMetaProps[];
+}
+
 export default async function LearnContentPage({ params }: LearnContentPage) {
-  const { content, subContents } = await getContent(params.content);
+  const { content, subContents } = await getContent(params.content) as ContentDetailProps;
   if (!content) return null;
 
   const sortedSubContents = subContents.sort((a, b) => {
@@ -65,17 +71,12 @@ export default async function LearnContentPage({ params }: LearnContentPage) {
   );
 }
 
-async function getContent(contentSlug: string) {
+async function getContent(contentSlug: string): Promise<ContentDetailProps> {
   const ENDPOINT = `${process.env.CMS_API_URL}/learn-series/${contentSlug}/contents` ;
 
   const response = await fetcher(ENDPOINT)
   if (response?.status !== 200) {
-    return {
-      redirect: {
-        destination: '/404',
-        permanent: false
-      }
-    };
+    return {} as ContentDetailProps;
   }
   
   return {
