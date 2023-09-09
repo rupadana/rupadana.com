@@ -1,0 +1,133 @@
+---
+id: 4
+title: 'Create blog resource'
+category: 'PHP'
+language: 'PHP'
+difficulty: 'Beginner'
+source: ''
+cover_url: ''
+source_url: ''
+created_at: '2023-09-09'
+updated_at: '2023-09-09'
+---
+
+> Introduction
+
+Resources are static classes that are used to build CRUD interfaces for your Eloquent models. They describe how administrators should be able to interact with data from your app - using tables and forms.
+
+> Create a migration
+
+```
+php artisan make:migration create_blogs_table
+```
+
+and edit it :
+
+```php
+Schema::create('blogs', function (Blueprint $table) {
+    $table->id();
+    $table->string('slug');
+    $table->string('title');
+    $table->text('body')->nullable();
+    $table->timestamps();
+});
+```
+
+> Create a model
+
+First, create laravel model for your resource.
+
+```
+php artisan make:model Blog
+```
+
+add column to `$fillable` property in `app\Models\Blog.php`
+
+```php
+protected $fillable = [
+    'slug',
+    'title',
+    'body',
+];
+```
+
+
+> Create a resource
+
+To create a resource for the `App\Models\Blog` model:
+
+```bash
+php artisan make:filament-resource Blog
+```
+
+This will create several files in the `app/Filament/Resources` directory:
+
+```
+.
++-- BlogResource.php
++-- BlogResource
+|   +-- Pages
+|   |   +-- CreateBlog.php
+|   |   +-- EditBlog.php
+|   |   +-- ListBlogs.php
+```
+
+
+> Configure resource table
+
+Open `app\Filament\Resources\BlogResource.php` and edit `table` method :
+
+```php
+public static function table(Table $table): Table
+{
+    return $table
+        ->columns([
+            TextColumn::make('title'),
+            TextColumn::make('slug'),
+        ])
+        ->filters([
+            //
+        ])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+        ])
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]),
+        ])
+        ->emptyStateActions([
+            Tables\Actions\CreateAction::make(),
+        ]);
+}
+```
+
+There we add a TextColumn, filament will automatically detect it according to the column name in the database table
+
+Read about TextColumn [here](https://filamentphp.com/docs/3.x/tables/columns/text)
+
+> Configure resource form
+
+Open `app\Filament\Resources\BlogResource.php` and edit `form` method :
+
+```php
+public static function form(Form $form): Form
+{
+    return $form
+        ->schema([
+            TextInput::make('title'),
+            TextInput::make('slug'),
+            Textarea::make('body')
+                ->columnSpanFull()
+                ->rows(10)
+        ]);
+}
+```
+
+> Run migration
+
+```
+php artisan migrate
+```
+
+and finally, you have a CRUD feature for Blog Resource. Open `admin/blogs`  in your browser

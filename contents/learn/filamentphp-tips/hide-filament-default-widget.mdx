@@ -1,0 +1,37 @@
+---
+id: 2
+title: 'Hide filamentphp default Widget'
+category: 'Filamentphp Tips'
+language: 'PHP'
+difficulty: 'Beginner'
+source: ''
+cover_url: ''
+source_url: ''
+created_at: '2023-08-24'
+updated_at: '2023-08-24'
+---
+
+
+> Introduction
+
+Before continuing, make sure you have installed panel builder.
+
+```bash
+php artisan filament:install --panels
+```
+
+
+> Edit AdminPanelProvider
+
+Edit file `app/Providers/Filament/AdminPanelProvider.php`
+
+Here we found default widgets, you can remove it.
+```php
+$panel
+->widgets([
+    Widgets\AccountWidget::class,
+    Widgets\FilamentInfoWidget::class,
+])
+```
+
+Open `/admin` and widget is gone.

@@ -1,0 +1,122 @@
+---
+id: 1
+title: 'Run Nextjs using docker'
+category: 'Nextjs Tips'
+language: 'Docker'
+difficulty: 'Advanced'
+source: ''
+cover_url: ''
+source_url: ''
+created_at: '2023-09-09'
+updated_at: '2023-09-09'
+---
+
+> Introduction
+
+In this post im using `next@14.3.12`, it maybe will be different method in the future.
+
+> Creating a Next.js app
+
+In this post, we will work with a basic next js app generated when you run the command:
+
+```
+npx create-next-app@latest nextjs-docker-app
+```
+
+Run the development server using the command npm run dev which should give an output that the server is running on localhost:3000. When you open your browser on the provided URL.
+
+> Writing a Dockerfile
+
+Docker, in a nutshell, allows developers to simply generate, distribute, and deploy images, resulting in faster development cycles and simpler application management.
+
+With that stated, let's create a file named, `Dockerfile` in our root directory and paste the following content within it.
+
+```
+FROM node:18-alpine as builder
+WORKDIR /my-space
+
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+FROM node:18-alpine as runner
+WORKDIR /my-space
+COPY --from=builder /my-space/package.json .
+COPY --from=builder /my-space/package-lock.json .
+COPY --from=builder /my-space/next.config.js ./
+COPY --from=builder /my-space/public ./public
+COPY --from=builder /my-space/.next/standalone ./
+COPY --from=builder /my-space/.next/static ./.next/static
+EXPOSE 3000
+ENTRYPOINT ["npm", "start"]
+
+```
+
+> Optimize Nextjs for Production
+
+## Edit next.config.js
+
+Edit your `next.config.js`, it will be generate `.next/standalone`.
+
+During `next build`, Next.js will use [@vercel/nft](https://github.com/vercel/nft) to statically analyze `import`, `require`, and `fs` usage to determine all files that a page might load.
+
+Next.js' production server is also traced for its needed files and output at `.next/next-server.js.nft.json` which can be leveraged in production.
+
+To leverage the `.nft.json` files emitted to the `.next` output directory, you can read the list of files in each trace that are relative to the `.nft.json` file and then copy them to your deployment location.
+
+
+```
+const nextConfig = {
+    ...
+    output: 'standalone',
+    ...
+}
+```
+
+
+## Add `sharp` module
+
+```
+npm i sharp
+```
+
+```
+yarn add sharp
+```
+
+```
+pnpm add sharp
+```
+
+```
+bun add sharp
+```
+
+## Update `start` script
+
+To optimize image size, in the `standalone` directory do not install the `next` module, and we cannot run `next start`. We have to run it using `node`.
+
+update your `package.json`
+
+```
+{
+    "scripts" : {
+        "start": "node server.js",
+    }
+}
+```
+
+> Build Docker Images
+
+```
+docker build -t rupadana/rupadana.com ./
+```
+
+> Run app
+
+```
+docker run -d -p 3000:3000 rupadana/rupadana.com
+```
+
+Finally, it will be hosted on http://localhost:3000
