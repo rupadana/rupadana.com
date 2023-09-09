@@ -66,7 +66,6 @@ async function getContentDetail(params: Params) {
   const ENDPOINT = `${process.env.CMS_API_URL}/learn-contents/${params.content}/${params.slug}`;
 
   const response = await fetcher(ENDPOINT);
-  console.log(response.data.data)
   if (response?.status !== 200) {
     return {
       redirect: {
