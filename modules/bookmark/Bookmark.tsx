@@ -13,11 +13,11 @@ import LoadingCard from "@/common/components/elements/LoadingCard";
 
 
 export default function Bookmark() {
-    const {data, isLoading} = useSWR('/api/bookmarks', fetcher);
+    const { data, isLoading } = useSWR('/api/bookmarks', fetcher);
 
     const bookmarks: BookmarkContent[] = useMemo(() => {
 
-        if(data?.status) return data.data;
+        if (data?.status) return data.data;
 
         return [];
     }, [data])
@@ -25,7 +25,7 @@ export default function Bookmark() {
     const { categoryOption, setCategoryOption } = useBookmarkCategoryStore()
 
     const filteredBookmarks: BookmarkContent[] = useMemo(() => {
-        if(categoryOption != 'all') {
+        if (categoryOption != 'all') {
             return bookmarks.filter((bookmark: BookmarkContent) => bookmark.category == categoryOption)
         }
         return bookmarks
@@ -35,13 +35,17 @@ export default function Bookmark() {
         <BookmarkListHeader categoryOption={categoryOption} setCategoryOption={setCategoryOption} />
 
         {
-            isLoading && <LoadingCard view="grid"/>
+            isLoading && <LoadingCard view="grid" />
         }
 
         {
-            filteredBookmarks.length > 0 && !isLoading ? filteredBookmarks.map(
+            filteredBookmarks.length > 0 && filteredBookmarks.map(
                 (bookmark: BookmarkContent) => <BookmarkCard content={bookmark}></BookmarkCard>
-            ) : <EmptyState message="There's nothing bookmark"></EmptyState>
+            )
+        }
+
+        {
+            filteredBookmarks.length == 0 && !isLoading ? <EmptyState message="There's nothing bookmark"></EmptyState> : <div></div>
         }
     </>
 }
