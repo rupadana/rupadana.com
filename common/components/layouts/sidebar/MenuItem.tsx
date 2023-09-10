@@ -20,7 +20,7 @@ export default function MenuItem({ title, href, icon, onClick, className = '', c
   const url = new URL(href, 'https://rupadana.com');
 
   const activeClasses = `flex items-center gap-2 py-2 px-4 text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 hover:dark:text-neutral-300 rounded-lg ${
-    pathname === url.pathname
+    pathname === url.pathname && isHashLink === false
       ? 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:!text-neutral-300'
       : 'hover:dark:lg:bg-neutral-800 hover:lg:bg-neutral-200 hover:lg:rounded-lg lg:hover:scale-105 lg:transition-all lg:duration-300'
   }`;
@@ -59,7 +59,7 @@ export default function MenuItem({ title, href, icon, onClick, className = '', c
   };
 
   return isHashLink ? (
-    <div className="cursor-pointer">{itemComponent()}</div>
+    <div className="cursor-pointer" onClick={handleClick}>{itemComponent()}</div>
   ) : (
     <Link aria-label={title} tabIndex={0} href={href} target={isExternalUrl ? '_blank' : ''} onClick={handleClick}>
       {itemComponent()}

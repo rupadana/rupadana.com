@@ -10,6 +10,7 @@ import { METADATA } from '@/common/constant/metadata';
 import { poppins } from '../common/styles/fonts';
 import ThemeProviderContext from '../context/theme';
 import './globals.css';
+import { CommandDialog, CommandMenu } from '@/common/components/elements/Command';
 
 export const metadata: Metadata = {
   description: METADATA.description,
@@ -47,9 +48,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Layouts>{children}</Layouts>
         </ThemeProviderContext>
         <Analytics />
-
+        <CommandMenu />
         <GoogleAnalytics measurementId={process.env.GTM_ID || ''} />
       </body>
     </html>
   );
 }
+
+

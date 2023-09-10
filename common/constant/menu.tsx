@@ -1,5 +1,6 @@
 import {
   BiLineChart as AnalyticsIcon,
+  BiCommand,
   BiEditAlt as BlogIcon,
   BiEnvelope as ContactIcon,
   BiCategoryAlt as DashboardIcon,
@@ -21,6 +22,7 @@ import {
 import { LuWorkflow } from 'react-icons/lu';
 
 import { MenuItemProps } from '../types/menu';
+import { useCommand } from '@/context/command';
 
 const iconSize = 20;
 
