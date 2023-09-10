@@ -10,10 +10,14 @@ import useSWR from 'swr';
 import { fetcher } from "@/services/fetcher";
 import EmptyState from "@/common/components/elements/EmptyState";
 import LoadingCard from "@/common/components/elements/LoadingCard";
+import useIsMobile from "@/hooks/useIsMobile";
+import clsx from "clsx";
 
 
 export default function Bookmark() {
     const { data, isLoading } = useSWR('/api/bookmarks', fetcher);
+
+    const isMobile = useIsMobile();
 
     const bookmarks: BookmarkContent[] = useMemo(() => {
 
@@ -38,11 +42,19 @@ export default function Bookmark() {
             isLoading && <LoadingCard view="grid" />
         }
 
-        {
-            filteredBookmarks.length > 0 && filteredBookmarks.map(
-                (bookmark: BookmarkContent) => <BookmarkCard content={bookmark}></BookmarkCard>
-            )
-        }
+        <div
+            className={clsx(
+                'gap-5 sm:gap-4',
+                isMobile ? 'flex flex-col' : 'grid grid-cols-1 sm:!gap-5'
+            )}
+        >
+            {
+                filteredBookmarks.length > 0 && filteredBookmarks.map(
+                    (bookmark: BookmarkContent) => <BookmarkCard content={bookmark}></BookmarkCard>
+                )
+            }
+
+        </div>
 
         {
             filteredBookmarks.length == 0 && !isLoading ? <EmptyState message="There's nothing bookmark"></EmptyState> : <div></div>
