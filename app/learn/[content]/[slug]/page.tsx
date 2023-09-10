@@ -11,6 +11,7 @@ import loadMdxFiles from '@/common/libs/mdx';
 import ContentDetail from '@/modules/learn/components/ContentDetail';
 import ContentDetailHeader from '@/modules/learn/components/ContentDetailHeader';
 import { fetcher } from '@/services/fetcher';
+import axios from 'axios';
 
 interface Params {
   content: string;
@@ -65,7 +66,7 @@ export default async function LearnContentDetailPage({ params }: LearnContentDet
 async function getContentDetail(params: Params) {
   const ENDPOINT = `${process.env.CMS_API_URL}/learn-contents/${params.content}/${params.slug}`;
 
-  const response = await fetcher(ENDPOINT);
+  const response = await axios.get(ENDPOINT);
   if (response?.status !== 200) {
     return {
       redirect: {

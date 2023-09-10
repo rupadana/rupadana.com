@@ -23,11 +23,14 @@ export default function Blog() {
   const { data, isLoading } = useSWR('/api/blog', fetcher);
 
   const blogData: BlogItem[] = useMemo(() => {
+    
     if (data?.status && data?.data && Array.isArray(data?.data)) {
       return data.data;
     }
     return [];
   }, [data]);
+
+  
 
   if (isLoading)
     return (

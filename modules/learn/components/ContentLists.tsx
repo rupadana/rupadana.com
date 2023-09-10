@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 import { ContentProps, SubContentMetaProps } from '@/common/types/learn';
-import { MdxFileProps } from '@/common/types/mdx';
 
 import LearnSubContentItem from './LearnSubContentItem';
 

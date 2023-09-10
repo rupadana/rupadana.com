@@ -13,6 +13,7 @@ import loadMdxFiles from '@/common/libs/mdx';
 import ContentLists from '@/modules/learn/components/ContentLists';
 import { fetcher } from '@/services/fetcher';
 import { ContentProps, SubContentMetaProps } from '@/common/types/learn';
+import axios from 'axios';
 
 interface LearnContentPage {
   params: { content: string };
@@ -74,7 +75,7 @@ export default async function LearnContentPage({ params }: LearnContentPage) {
 async function getContent(contentSlug: string): Promise<ContentDetailProps> {
   const ENDPOINT = `${process.env.CMS_API_URL}/learn-series/${contentSlug}/contents` ;
 
-  const response = await fetcher(ENDPOINT)
+  const response = await axios.get(ENDPOINT)
   if (response?.status !== 200) {
     return {} as ContentDetailProps;
   }

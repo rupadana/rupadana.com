@@ -6,4 +6,4 @@ const httpsAgent = new https.Agent({
 
 export const fetcher = (url: string) => axios.get(url, {
     httpsAgent
-});
+}).then(response => response.data);
