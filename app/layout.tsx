@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-export const revalidate = 3600 // revalidate at most every hour
 
 import GoogleAnalytics from '@bradgarropy/next-google-analytics';
 import { Analytics } from '@vercel/analytics/react';
