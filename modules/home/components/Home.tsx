@@ -16,8 +16,6 @@ export default async function Home({githubData} : HomeProps) {
     <>
       <Introduction />
       <Breakline className="mt-8 mb-6" />
-      <CareerList />
-      <Breakline className="mt-8 mb-6" />
       <Contributions githubData={githubData} />
       <Breakline className="mt-8 mb-6" />
       <SkillList />

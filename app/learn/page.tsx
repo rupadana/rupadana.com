@@ -4,13 +4,9 @@ import * as https from "https";
 
 import Container from '@/common/components/elements/Container';
 import PageHeading from '@/common/components/elements/PageHeading';
-import { LEARN_CONTENTS } from '@/common/constant/learn';
 import { METADATA } from '@/common/constant/metadata';
-import useSWR from 'swr';
 
 import LearnModule from '@/modules/learn';
-import getLearnSeries from './data';
-import { fetcher } from '@/services/fetcher';
 
 export const metadata: Metadata = {
   title: `Learn ${METADATA.exTitle}`,

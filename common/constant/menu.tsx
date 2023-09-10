@@ -88,7 +88,15 @@ export const MENU_ITEMS: MenuItemProps[] = [
     isShow: false,
     isExternal: false,
     eventName: 'Pages: Dashboard'
-  }
+  },
+  {
+    title: 'Bookmark',
+    href: '/bookmark',
+    icon: <LearnIcon size={iconSize} />,
+    isShow: true,
+    isExternal: false,
+    eventName: 'Pages: Bookmark'
+  },
 ];
 
 export const SOCIAL_MEDIA: MenuItemProps[] = [

@@ -6,7 +6,6 @@ import React from 'react';
 import BackButton from '@/common/components/elements/BackButton';
 import Container from '@/common/components/elements/Container';
 import PageHeading from '@/common/components/elements/PageHeading';
-import { LEARN_CONTENTS } from '@/common/constant/learn';
 import { METADATA } from '@/common/constant/metadata';
 import loadMdxFiles from '@/common/libs/mdx';
 

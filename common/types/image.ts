@@ -1,11 +1,11 @@
 export interface ImageType {
-    type: string;
-    title: string;
+    type: string | null;
+    title: string | null;
     alt: string | null;
     description: string | null;
     url: string;
-    thumbnail_url: string;
-    medium_url: string;
-    large_url: string;
-    size: number;
+    thumbnail_url: string | null;
+    medium_url: string | null;
+    large_url: string | null;
+    size: number | null;
 }
