@@ -15,7 +15,6 @@ export default async function Home({githubData} : HomeProps) {
 
   return (
     <>
-      <SiShell></SiShell>
       <Introduction />
       <Breakline className="mt-8 mb-6" />
       <Contributions githubData={githubData} />

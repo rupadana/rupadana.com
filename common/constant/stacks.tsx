@@ -73,7 +73,7 @@ export const STACKS: stacksProps = {
   Prisma: <SiPrisma size={iconSize} className="text-teal-500" />,
   'Node JS': <SiNodedotjs size={iconSize} className="text-green-600" />,
   Github: <SiGithub size={iconSize} />,
-  Docker: <BiLogoDocker size={iconSize} />,
+  Docker: <BiLogoDocker size={iconSize} className='text-blue-500'/>,
   Bash: <SiGnubash size={iconSize} />,
   Ubuntu: <FaUbuntu size={iconSize}/>
 };
