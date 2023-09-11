@@ -10,6 +10,7 @@ import { FiExternalLink as LinkIcon } from 'react-icons/fi';
 import Tooltip from '@/common/components/elements/Tooltip';
 import { STACKS } from '@/common/constant/stacks';
 import { SubContentMetaProps } from '@/common/types/learn';
+import { ucfirst } from '@/common/libs/string';
 
 export default function ContentDetailHeader({
   title,
@@ -80,9 +81,9 @@ export default function ContentDetailHeader({
             </Link>
           )}
           {difficulty && (
-            <Tooltip title={`Difficulty: ${difficulty}`}>
+            <Tooltip title={`Difficulty: ${ucfirst(difficulty)}`}>
               <div className="px-2 py-1 text-xs font-medium rounded-full bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-400">
-                {difficulty}
+                {ucfirst(difficulty)}
               </div>
             </Tooltip>
           )}

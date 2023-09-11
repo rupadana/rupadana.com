@@ -153,9 +153,10 @@ CommandShortcut.displayName = "CommandShortcut"
 interface MenuItemPropsPrimitive {
     menu: MenuItemProps;
     onClick: () => void;
+    key?: any
 }
 
-function MenuItem({ menu, onClick }: MenuItemPropsPrimitive) {
+function MenuItem({ menu, onClick, key }: MenuItemPropsPrimitive) {
     const { href, icon, title, ...props } = menu;
     return (
         <Link href={href} {...props} onClick={() => onClick()}>
@@ -198,7 +199,7 @@ function CommandMenu() {
                 </CommandGroup>
                 <CommandGroup heading="Social Media">
                     {
-                        filteredSocial.map(menu => <MenuItem menu={menu} onClick={() => toggleCommand()} />)
+                        filteredSocial.map((menu,i) => <MenuItem menu={menu} key={i} onClick={() => toggleCommand()} />)
                     }
                 </CommandGroup>
             </CommandList>

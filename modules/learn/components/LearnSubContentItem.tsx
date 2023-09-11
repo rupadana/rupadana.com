@@ -7,6 +7,7 @@ import Tooltip from '@/common/components/elements/Tooltip';
 import { STACKS } from '@/common/constant/stacks';
 import clsxm from '@/common/libs/clsxm';
 import { SubContentProps } from '@/common/types/learn';
+import { ucfirst } from '@/common/libs/string';
 
 export default function LearnSubContentItem({
   contentSlug,
@@ -28,9 +29,9 @@ export default function LearnSubContentItem({
         </div>
         <div className="hidden md:flex gap-5 items-center">
           {difficulty && (
-            <Tooltip title={`Difficulty: ${difficulty}`}>
+            <Tooltip title={`Difficulty: ${ucfirst(difficulty)}`}>
               <div className="px-2 py-1 text-xs font-medium rounded-full bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-400">
-                {difficulty}
+                {ucfirst(difficulty)}
               </div>
             </Tooltip>
           )}

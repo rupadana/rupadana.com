@@ -11,5 +11,7 @@ export const SKILLS = [
   'Bootstrap',
   'JavaScript',
   'HTML',
-  'CSS'
+  'CSS',
+  'Docker',
+  'Github'
 ];

@@ -1,5 +1,6 @@
-import { BiLogoPostgresql } from 'react-icons/bi';
+import { BiLogoDocker, BiLogoPostgresql } from 'react-icons/bi';
 import { BsFillBootstrapFill } from 'react-icons/bs';
+import { FaUbuntu } from 'react-icons/fa';
 import {
   SiApollographql,
   SiChakraui,
@@ -9,6 +10,7 @@ import {
   SiFirebase,
   SiFramer,
   SiGithub,
+  SiGnubash,
   SiGraphql,
   SiGulp,
   SiHtml5,
@@ -70,5 +72,8 @@ export const STACKS: stacksProps = {
   CSS: <SiCss3 size={iconSize} className="text-blue-500" />,
   Prisma: <SiPrisma size={iconSize} className="text-teal-500" />,
   'Node JS': <SiNodedotjs size={iconSize} className="text-green-600" />,
-  Github: <SiGithub size={iconSize} />
+  Github: <SiGithub size={iconSize} />,
+  Docker: <BiLogoDocker size={iconSize} />,
+  Bash: <SiGnubash size={iconSize} />,
+  Ubuntu: <FaUbuntu size={iconSize}/>
 };
