@@ -7,6 +7,7 @@ import 'aos/dist/aos.css';
 import React, { ReactNode, useEffect } from 'react';
 
 import Sidebar from './sidebar';
+import LearnSidebar from '@/modules/learn/sidebar/learn-sidebar';
 
 
 interface LayoutsProps {
@@ -17,7 +18,9 @@ export default function Layouts({ children }: LayoutsProps) {
   const pathName = usePathname();
   const params = useSearchParams();
 
-  const hideSidebar = pathName == '/me' || params.get('read-mode') == 'true'
+  const isReadMode = params.get('read-mode') == 'true'
+  const hideSidebar = pathName == '/me' || isReadMode
+
 
   useEffect(() => {
     AOS.init({
@@ -36,6 +39,14 @@ export default function Layouts({ children }: LayoutsProps) {
         <main className="lg:max-w-[854px] transition-all duration-300 w-full lg:min-h-screen overflow-y-auto no-scrollbar">
           {children}
         </main>
+
+        {
+          isReadMode && hideSidebar ? <header>
+            <LearnSidebar />
+          </header> : <></>
+        } 
+
+
       </div>
     </div>
   );

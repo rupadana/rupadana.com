@@ -50,7 +50,7 @@ export default async function LearnContentDetailPage({ params }: LearnContentDet
   return (
     <>
       <Container data-aos="fade-up">
-        <BackButton />
+        <BackButton url={`/learn`}/>
         <ContentDetailHeader {...data} />
         {data && (
           <>

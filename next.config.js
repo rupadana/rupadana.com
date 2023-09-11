@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     domains: ['picsum.photos', 'res.cloudinary.com', 'admin.codecrafters.id', 'vitals.vercel-insights.com', 'admin.rupadana.com'],
 
-  }
+  },
 };
 
 module.exports = nextConfig;

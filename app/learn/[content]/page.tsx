@@ -11,7 +11,7 @@ import loadMdxFiles from '@/common/libs/mdx';
 
 import ContentLists from '@/modules/learn/components/ContentLists';
 import { fetcher } from '@/services/fetcher';
-import { ContentProps, SubContentMetaProps } from '@/common/types/learn';
+import { ContentDetailProps, ContentProps, SubContentMetaProps } from '@/common/types/learn';
 import axios from 'axios';
 
 interface LearnContentPage {
@@ -41,11 +41,6 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
       canonical: `${METADATA.openGraph.url}/learn/${params.content}`
     }
   };
-}
-
-interface ContentDetailProps {
-  content: ContentProps;
-  subContents: SubContentMetaProps[];
 }
 
 export default async function LearnContentPage({ params }: LearnContentPage) {

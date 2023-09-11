@@ -6,7 +6,7 @@ import { ContentProps } from '@/common/types/learn';
 
 export default function LearnCard({ title, slug, description, image, is_new }: ContentProps) {
   return (
-    <Link href={`/learn/${slug}?read-mode=true`}>
+    <Link href={`/learn/${slug}`}>
       <Card className="relative border dark:bg-neutral-800 border-neutral-200 dark:border-neutral-800 lg:hover:scale-[102%] cursor-pointer">
         {is_new && (
           <div className="absolute top-0 right-0 bg-green-200 text-emerald-950 text-[13px] font-medium py-1 px-2 rounded-bl-xl rounded-tr-xl z-[2]">

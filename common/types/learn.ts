@@ -46,3 +46,9 @@ export interface MdxFileContentProps {
   frontMatter: SubContentMetaProps;
   content: string;
 }
+
+
+export interface ContentDetailProps {
+  content: ContentProps;
+  subContents: SubContentMetaProps[];
+}
