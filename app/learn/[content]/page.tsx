@@ -7,12 +7,12 @@ import BackButton from '@/common/components/elements/BackButton';
 import Container from '@/common/components/elements/Container';
 import PageHeading from '@/common/components/elements/PageHeading';
 import { METADATA } from '@/common/constant/metadata';
-import loadMdxFiles from '@/common/libs/mdx';
 
 import ContentLists from '@/modules/learn/components/ContentLists';
-import { fetcher } from '@/services/fetcher';
-import { ContentDetailProps, ContentProps, SubContentMetaProps } from '@/common/types/learn';
+import { ContentDetailProps, ContentProps } from '@/common/types/learn';
 import axios from 'axios';
+import { LEARN_CONTENTS } from '@/common/constant/learn';
+import { DEV_TO_URL } from '@/common/constant';
 
 interface LearnContentPage {
   params: { content: string };
@@ -23,7 +23,7 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { content } = await getContent(params.content);
   return {
     title: `${content?.title} ${METADATA.exTitle}`,
@@ -67,15 +67,16 @@ export default async function LearnContentPage({ params }: LearnContentPage) {
 }
 
 async function getContent(contentSlug: string): Promise<ContentDetailProps> {
-  const ENDPOINT = `${process.env.CMS_API_URL}/learn-series/${contentSlug}/contents` ;
+  const serie = LEARN_CONTENTS.find((c: ContentProps) => c.slug == contentSlug);
 
-  const response = await axios.get(ENDPOINT)
+  const response = await axios.get(`${DEV_TO_URL}/api/articles?collection_id=${serie?.collection_id}`)
+
   if (response?.status !== 200) {
     return {} as ContentDetailProps;
   }
   
   return {
-    content: response.data.data.content,
-    subContents: response.data.data.subContents
+    content: serie,
+    subContents: response.data
   };
 }

@@ -12,6 +12,12 @@ import ContentDetail from '@/modules/learn/components/ContentDetail';
 import ContentDetailHeader from '@/modules/learn/components/ContentDetailHeader';
 import { fetcher } from '@/services/fetcher';
 import axios from 'axios';
+import { DEV_TO_URL } from '@/common/constant';
+import { ContentProps } from '@/common/types/learn';
+import { LEARN_CONTENTS } from '@/common/constant/learn';
+import BlogDetail from '@/modules/blog/components/BlogDetail';
+import { CommentItemProps } from '@/common/types/blog';
+import { getBlogViews } from '@/services/view';
 
 interface Params {
   content: string;
@@ -46,15 +52,15 @@ export async function generateMetadata(
 
 export default async function LearnContentDetailPage({ params }: LearnContentDetailPageProps) {
   const data = await getContentDetail(params);
-
+  const pageViewCount = await getBlogViews(data.id as string);
+  const comments = await getComments(data.id as string);
   return (
     <>
       <Container data-aos="fade-up">
         <BackButton url={`/learn`}/>
-        <ContentDetailHeader {...data} />
         {data && (
           <>
-            <ContentDetail content={data.content} />
+            <BlogDetail blog={data} pageViewCount={pageViewCount} comments={comments} />
             <Breakline className="mt-14 mb-14" />
           </>
         )}
@@ -64,9 +70,8 @@ export default async function LearnContentDetailPage({ params }: LearnContentDet
 }
 
 async function getContentDetail(params: Params) {
-  const ENDPOINT = `${process.env.CMS_API_URL}/learn-contents/${params.content}/${params.slug}`;
+  const response = await axios.get(`${DEV_TO_URL}/api/articles/rupadana/${params.slug}`)
 
-  const response = await axios.get(ENDPOINT);
   if (response?.status !== 200) {
     return {
       redirect: {
@@ -75,5 +80,16 @@ async function getContentDetail(params: Params) {
       }
     };
   }
-  return response.data.data;
+  return response.data;
+}
+
+async function getComments(postId: string): Promise<CommentItemProps[]> {
+  const DEV_TO_URL = `https://dev.to/api/comments/?a_id=${postId}`;
+  const response = await axios.get(DEV_TO_URL, {
+    headers: {
+      'api-key': process.env.DEVTO_KEY
+    }
+  });
+  if (response?.status !== 200) return [];
+  return response.data;
 }

@@ -12,41 +12,19 @@ import clsx from 'clsx';
 import useIsMobile from '@/hooks/useIsMobile';
 import LoadingCard from '@/common/components/elements/LoadingCard';
 import EmptyState from '@/common/components/elements/EmptyState';
+import { LEARN_CONTENTS } from '@/common/constant/learn';
 
-const SERIES_ENDPOINT = '/api/learn';
+
 
 export default function LearnModule() {
-  const isMobile = useIsMobile();
-  let { data, isLoading } = useSWR(`${SERIES_ENDPOINT}`, fetcher);
 
-  const seriesItem: ContentProps[] = useMemo(() => {
-    if (data?.status && data?.data && Array.isArray(data?.data)) {
-      return data.data;
-    }
-    return [];
-  }, [data]);
-
-  if (isLoading)
-    return (
-      <div
-        className={clsx(
-          'gap-5 sm:gap-4',
-          isMobile ? 'flex flex-col' : 'grid grid-cols-2 sm:!gap-5'
-        )}
-      >
-        {[1, 2].map(item => (
-          <LoadingCard key={item} view='grid' />
-        ))}
-      </div>
-    );
-
-  if (seriesItem.length === 0 && !isLoading) {
+  if (LEARN_CONTENTS.length === 0 ) {
     return <EmptyState message="No Data" />;
   }
 
   return (
     <div className="grid sm:grid-cols-2 gap-5 pt-2">
-      {seriesItem?.map((content, index) => (
+      {LEARN_CONTENTS?.map((content, index) => (
         <motion.div
           key={index}
           initial={{ opacity: 0, scale: 0.8 }}

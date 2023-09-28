@@ -9,8 +9,8 @@ import LearnSubContentItem from './LearnSubContentItem';
 
 interface ContentListsProps {
   sortedSubContents: SubContentMetaProps[];
-  title: string;
-  content: ContentProps;
+  title?: string;
+  content?: ContentProps;
 }
 export default function ContentLists({ sortedSubContents, title, content }: ContentListsProps) {
   return (
@@ -27,8 +27,8 @@ export default function ContentLists({ sortedSubContents, title, content }: Cont
             contentSlug={content?.slug}
             subContentSlug={item?.slug}
             title={item?.title as string}
-            language={item?.language as string}
-            difficulty={item?.difficulty as string}
+            language={content?.language as string}
+            difficulty={content?.level as string}
           />
         </motion.div>
       ))}

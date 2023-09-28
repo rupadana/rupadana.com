@@ -29,14 +29,18 @@ export default function BlogDetail({ blog, pageViewCount, comments }: BlogDetail
       />
       <div className="space-y-6 leading-[1.8] dark:text-neutral-300 ">
         <div className="overflow-hidden">
-          <Image
-            src={cover_image || PLACEHOLDER_URL}
-            width={800}
-            height={500}
-            alt={title}
-            className="hover:scale-105 transition-all duration-700"
-            priority
-          />
+
+          {
+            cover_image && <Image
+              src={cover_image || PLACEHOLDER_URL}
+              width={800}
+              height={500}
+              alt={title}
+              className="hover:scale-105 transition-all duration-700"
+              priority
+            />
+          }
+          
         </div>
         {body_markdown && <MDXComponent>{body_markdown}</MDXComponent>}
       </div>

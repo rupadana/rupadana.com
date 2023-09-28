@@ -18,7 +18,7 @@ export default function ContentDetailHeader({
   difficulty,
   language,
   source_url,
-  updated_at
+  edited_at
 }: SubContentMetaProps) {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -67,7 +67,7 @@ export default function ContentDetailHeader({
       <div className="flex flex-col sm:flex-row items-start lg:items-center gap-2 justify-between mb-6 pt-3 pb-6 border-b border-dashed border-neutral-600 text-neutral-600 dark:text-neutral-400 text-[14px]">
         <div>
           Last update on
-          <span className="px-1 font-medium">{format(new Date(updated_at), 'MMMM dd, yyyy')}</span>
+          <span className="px-1 font-medium">{format(new Date(edited_at), 'MMMM dd, yyyy')}</span>
         </div>
         <div className="flex gap-4 items-center mt-1">
           {source && source_url && (

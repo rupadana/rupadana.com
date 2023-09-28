@@ -6,3 +6,4 @@ export const PAGESPEED_CATEGORIES = '&category=accessibility&category=performanc
 export const PROFILE_URL =
   'https://res.cloudinary.com/rupadana/image/upload/v1694018808/rupadana/gy8iuaz8wutrarfpawpj.jpg';
 export const SAWERIA_URL = 'https://saweria.co/rupadana';
+export const DEV_TO_URL = 'https://dev.to';

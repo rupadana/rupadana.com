@@ -5,22 +5,26 @@ export interface ContentLanguage {
   title: string;
 }
 
+
+
 export interface ContentProps {
   id: number;
   title: string;
   slug: string;
   description: string;
-  image: ImageType;
+  image: any;
   is_new: boolean;
-  level: 'beginner' | 'intermediate' | 'advanced' | 'all-levels';
+  level: 'Beginner' | 'Medium' | 'Advanced';
+  language: string;
   is_show: boolean;
   created_at: string | null;
   updated_at: string | null;
+  collection_id: number | null;
 }
 
 export interface SubContentProps {
-  parent: string;
-  contentSlug: string;
+  parent?: string;
+  contentSlug?: string;
   subContentSlug: string;
   title: string;
   language?: string;
@@ -35,10 +39,12 @@ export interface SubContentMetaProps {
   language?: string;
   difficulty?: string;
   source?: string;
-  cover_url?: string;
+  cover_image?: string;
   source_url?: string;
   created_at: string;
-  updated_at: string;
+  edited_at: string;
+  social_image: string;
+  tag_list: string[];
 }
 
 export interface MdxFileContentProps {
@@ -49,6 +55,6 @@ export interface MdxFileContentProps {
 
 
 export interface ContentDetailProps {
-  content: ContentProps;
+  content: ContentProps | any;
   subContents: SubContentMetaProps[];
 }
