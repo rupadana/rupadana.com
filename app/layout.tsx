@@ -47,9 +47,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProviderContext>
           <Layouts>{children}</Layouts>
         </ThemeProviderContext>
-        <Analytics />
+        {process.env.NODE_ENV === 'production' && <>
+          <Analytics />
+          <GoogleAnalytics measurementId={process.env.GTM_ID || ''} />
+        </>}
         <CommandMenu />
-        <GoogleAnalytics measurementId={process.env.GTM_ID || ''} />
+
       </body>
     </html>
   );

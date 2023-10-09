@@ -29,3 +29,21 @@ export const GITHUB_USER_QUERY = `query($username: String!) {
       }
     }
   }`;
+
+
+export const GITHUB_SPONSOR_QUERY = `query SponsorQuery{
+  viewer {
+    sponsors(first: 100) {
+      edges {
+        node {
+          ... on User {
+            id,
+            login,
+            url,
+            avatarUrl
+          }
+        }
+      }
+    }
+  }
+}`;
