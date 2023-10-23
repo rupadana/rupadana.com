@@ -20,7 +20,7 @@ export default function Sponsors({ githubSponsors }: Props) {
             <SectionSubHeading>
                 <p className="dark:text-neutral-400">Thank to all my Sponsors on Github</p>
                 <Link
-                    href={`https://github.com/${GITHUB_ACCOUNTS.username}`}
+                    href={`https://github.com/sponsors/${GITHUB_ACCOUNTS.username}`}
                     target="_blank"
                     passHref
                     className="text-sm font-code text-neutral-400 dark:text-neutral-600 hover:text-neutral-700 hover:dark:text-neutral-400"
