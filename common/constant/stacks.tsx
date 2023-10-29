@@ -1,8 +1,8 @@
-import { BiLogoDocker, BiLogoPostgresql } from 'react-icons/bi';
+import {BiLogoCPlusPlus, BiLogoDocker, BiLogoPostgresql} from 'react-icons/bi';
 import { BsFillBootstrapFill } from 'react-icons/bs';
 import { FaUbuntu } from 'react-icons/fa';
 import {
-  SiApollographql,
+  SiApollographql, SiArduino,
   SiChakraui,
   SiCss3,
   SiExpo,
@@ -75,5 +75,7 @@ export const STACKS: stacksProps = {
   Github: <SiGithub size={iconSize} />,
   Docker: <BiLogoDocker size={iconSize} className='text-blue-500'/>,
   Bash: <SiGnubash size={iconSize} />,
-  Ubuntu: <FaUbuntu size={iconSize}/>
+  Ubuntu: <FaUbuntu size={iconSize}/>,
+  'C++': <BiLogoCPlusPlus size={iconSize} />,
+  'Arduino' : <SiArduino size={iconSize} />
 };
