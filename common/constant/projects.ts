@@ -29,5 +29,19 @@ export const PROJECT_CONTENTS: ContentProps[] = [
     content: "",
     is_featured: true
   },
+  {
+    id: 3,
+    title: 'Transmitter-Receiver LoRaWan',
+    slug: 'transceiver-receiver-lorawan',
+    description: 'A simple IoT Project for transmitting and receiving packet using LoRaWan',
+    image: 'https://res.cloudinary.com/rupadana/image/upload/v1698596390/Screenshot_2023-10-30_at_00.14.13_iwj8og.png',
+    link_demo: 'https://youtu.be/-YUQ8k9B3Ao?si=cXhPQ25oujnaSfyx',
+    is_show: true,
+    link_github: '',
+    stacks: '["C++", "Arduino"]',
+    updated_at: '2023-10-29',
+    content: "",
+    is_featured: true
+  },
 
 ];
