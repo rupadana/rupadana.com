@@ -43,5 +43,19 @@ export const PROJECT_CONTENTS: ContentProps[] = [
     content: "",
     is_featured: true
   },
+  {
+    id: 5,
+    title: 'Filament Swiper',
+    slug: 'filament-swiper',
+    description: 'The Most Modern Mobile Touch Slider now on Filamentphp',
+    image: 'https://github.com/rupadana/filament-swiper/blob/main/docs/images/filament-swiper-image.png?raw=true',
+    link_demo: 'https://github.com/rupadana/filament-swiper',
+    is_show: true,
+    link_github: '',
+    stacks: '["PHP", "Laravel"]',
+    updated_at: '2023-11-05',
+    content: "",
+    is_featured: true
+  },
 
 ];
