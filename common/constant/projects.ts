@@ -17,29 +17,29 @@ export const PROJECT_CONTENTS: ContentProps[] = [
   },
   {
     id: 2,
-    title: 'rupadana.com',
-    slug: 'personal-website',
-    description: 'Personal website built with Next.js',
-    image: 'https://res.cloudinary.com/rupadana/image/upload/v1696080088/Screenshot_2023-09-30_at_21.17.35_ovr93h.png',
-    link_demo: 'https://rupadana.com',
+    title: 'Filament Swiper',
+    slug: 'filament-swiper',
+    description: 'The Most Modern Mobile Touch Slider now on Filamentphp',
+    image: 'https://raw.githubusercontent.com/rupadana/filament-swiper/main/docs/images/filament-swiper-image.png',
+    link_demo: 'https://github.com/rupadana/filament-swiper',
     is_show: true,
-    link_github: 'https://github.com/rupadana/rupadana.com',
-    stacks: '["Next.js", "TypeScript", "TailwindCSS"]',
-    updated_at: '2023-09-09',
+    link_github: 'https://github.com/rupadana/filament-swiper',
+    stacks: '["FilamentPhp", "Laravel", "PHP"]',
+    updated_at: '2024-02-14',
     content: "",
     is_featured: true
   },
   {
     id: 3,
-    title: 'Transmitter-Receiver LoRaWan',
-    slug: 'transceiver-receiver-lorawan',
-    description: 'A simple IoT Project for transmitting and receiving packet using LoRaWan',
-    image: 'https://res.cloudinary.com/rupadana/image/upload/v1698596390/Screenshot_2023-10-30_at_00.14.13_iwj8og.png',
-    link_demo: 'https://youtu.be/-YUQ8k9B3Ao?si=cXhPQ25oujnaSfyx',
+    title: 'Filament Announce',
+    slug: 'filament-announce',
+    description: 'The easiest way to shout announcements in Filament!',
+    image: 'https://camo.githubusercontent.com/247495c4212a8bff74a91225d8f3c9231cf8073c2b2bf8e312454e3dc1462f3a/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f7275706164616e612f696d6167652f75706c6f61642f76313730363130303136332f53637265656e73686f745f323032342d30312d32345f61745f32302e31342e34335f666f637868662e706e67',
+    link_demo: 'https://github.com/rupadana/filament-announce',
     is_show: true,
-    link_github: '',
-    stacks: '["C++", "Arduino"]',
-    updated_at: '2023-10-29',
+    link_github: 'https://github.com/rupadana/filament-announce',
+    stacks: '["FilamentPhp", "Laravel", "PHP"]',
+    updated_at: '2024-02-14',
     content: "",
     is_featured: true
   },
@@ -56,6 +56,5 @@ export const PROJECT_CONTENTS: ContentProps[] = [
     updated_at: '2023-11-05',
     content: "",
     is_featured: true
-  },
-
+  }
 ];
