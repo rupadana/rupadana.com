@@ -1,3 +1,20 @@
+---
+id: 5
+title: 'Filament Swiper'
+slug: 'filament-swiper'
+description: 'The Most Modern Mobile Touch Slider now on Filamentphp'
+image: 'https://github.com/rupadana/filament-swiper/blob/main/docs/images/filament-swiper-image.png?raw=true'
+link_demo: 'https://rupadana.com'
+is_show: true
+link_github: 'https://github.com/rupadana/filament-swiper'
+stacks: '["PHP", "Laravel"]'
+updated_at: '2023-10-05'
+is_featured: true
+---
+
+
+## The Most Modern Mobile Touch Slider now on Filamentphp
+
 This is a Swiper Component for filament, using [SwiperJS](https://swiperjs.com/).
 
 ## Installation
@@ -38,43 +55,10 @@ public function infolists(Infolists $infolists) {
             ->centeredSlides()
             ->slidesPerView(2)
     ])
-} 
-```
-
-
-## Widget
-
-Create a class whatever u want. example ``App\Livewire\Widgets\Swipget`` and extends ``Rupadana\FilamentSwiper\Widgets\SwiperWidget``,
-
-```php
-<?php
-
-namespace App\Livewire\Widgets;
-
-use App\Livewire\Components\Feature;
-use Rupadana\FilamentSwiper\Widgets\SwiperWidget;
-
-class Swipget extends SwiperWidget
-{
-
-    public function getComponents(): array
-    {
-        return [
-            // Your livewire component
-        ];
-    }
-}
-
-```
-
-and register it to your Filament Provider
-
-
-
 
 ## Bugs
 
-There is a bug. we need contributor to fix it. 
+There is a bug. we need contributor to fix it.
 
 - [ ] Using effect on the modal (Infolists)
 
