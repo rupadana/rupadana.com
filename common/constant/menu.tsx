@@ -76,29 +76,13 @@ export const MENU_ITEMS: MenuItemProps[] = [
     eventName: 'Pages: Contact'
   },
   {
-    title: 'Roadmap',
-    href: '/roadmap?tribe=frontend-developer',
-    icon: <LuWorkflow size={iconSize} />,
-    isShow: true,
-    isExternal: false,
-    eventName: 'Pages: Roadmap'
-  },
-  {
     title: 'Dashboard',
     href: '/dashboard',
     icon: <DashboardIcon size={iconSize} />,
     isShow: false,
     isExternal: false,
     eventName: 'Pages: Dashboard'
-  },
-  {
-    title: 'Bookmark',
-    href: '/bookmark',
-    icon: <LearnIcon size={iconSize} />,
-    isShow: true,
-    isExternal: false,
-    eventName: 'Pages: Bookmark'
-  },
+  }
 ];
 
 export const SOCIAL_MEDIA: MenuItemProps[] = [
